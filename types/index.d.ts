@@ -1,21 +1,17 @@
 /* eslint-disable no-unused-vars */
-
 declare type SearchParamProps = {
   params: { [key: string]: string };
   searchParams: { [key: string]: string | string[] | undefined };
 };
-
 // ========================================
-
 declare type SignUpParams = {
   firstName: string;
   lastName: string;
-  address1: string;
-  city: string;
-  state: string;
+  Address: string;
+  State: string;
   postalCode: string;
   dateOfBirth: string;
-  ssn: string;
+  SSN: string;
   email: string;
   password: string;
 };
@@ -34,12 +30,11 @@ declare type User = {
   firstName: string;
   lastName: string;
   name: string;
-  address1: string;
-  city: string;
-  state: string;
+  Address: string;
+  State: string;
   postalCode: string;
   dateOfBirth: string;
-  ssn: string;
+  SSN: string;
 };
 
 declare type NewUserParams = {
@@ -60,7 +55,7 @@ declare type Account = {
   type: string;
   subtype: string;
   appwriteItemId: string;
-  shareableId: string;
+  sharaebleId: string;
 };
 
 declare type Transaction = {
@@ -129,12 +124,11 @@ declare type NewDwollaCustomerParams = {
   lastName: string;
   email: string;
   type: string;
-  address1: string;
-  city: string;
-  state: string;
+  Address: string;
+  State: string;
   postalCode: string;
   dateOfBirth: string;
-  ssn: string;
+  SSN: string;
 };
 
 declare interface CreditCardProps {

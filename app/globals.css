@@ -18,6 +18,16 @@
         display: none;
     }
 }
+
+@layer utilities {
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;  /* Firefox */
+    }
+  }
 .bg-color{
     background:linear-gradient(90deg, #0179FE 0%, #4893FF 100%);
 }

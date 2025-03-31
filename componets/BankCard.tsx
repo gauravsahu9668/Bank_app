@@ -2,14 +2,15 @@ import React from 'react'
 import Link from 'next/link'
 import formatAmount from '@/lib/utitls'
 import Image from 'next/image'
+import Copy from './copy'
 const BankCard = ({account,userName,showBalance=true}:CreditCardProps) => {
   return (
     <div className='flex flex-col'>
-      <Link href='/' className='relative flex h-[190px] w-full max-w-[320px] justify-between bg-color rounded-[20px] border border-white shadow-creditCard backdrop-blur-[6px]'>
-       <div className='relative z-10 flex size-full max-w-[228px] flex-col justify-between rounded-l-[20px] bg-gray-700 bg-color px-5 pb-4 pt-5'>
+      <Link href={`/transaction-history/?id=${account.appwriteItemId}`} className='relative flex h-[190px] w-full max-w-[320px] justify-between bg-color rounded-[20px] border border-white shadow-creditCard backdrop-blur-[6px]'>
+       <div className='relative z-10 flex size-full max-w-[250px] flex-col justify-between rounded-l-[20px] bg-gray-700 bg-color px-5 pb-4 pt-5'>
         <div>
             <h1 className='text-16 font-semibold text-white'>
-                {account.name || userName}
+                {`${account.name} | ${userName}`}
             </h1>
             <p className='font-ibm-plex-serif font-black text-white'>
                 {
@@ -23,11 +24,11 @@ const BankCard = ({account,userName,showBalance=true}:CreditCardProps) => {
                     {userName}
                 </h1>
                 <h2 className='text-12 font-semibold text-white'>
-                ●●●/●●●
+                ●●/●●
                 </h2>
             </div>
             <p className='text-14 font-semibold tracking-[1.1px] text-white'>
-              ●●●● ●●●● ●●●●<span className='text-16'>{1234}</span>
+              ●●●● ●●●● ●●●●<span className='text-16'>{account.mask}</span>
             </p>
         </article>
        </div>
@@ -37,6 +38,9 @@ const BankCard = ({account,userName,showBalance=true}:CreditCardProps) => {
        </div>
        <Image src='/icons/lines.png' width={316} height={190} alt="lines" className='absolute left-0 top-0'></Image>
       </Link>
+      {
+        showBalance && <Copy title={account?.sharaebleId}></Copy>
+      }
     </div>
   )
 }

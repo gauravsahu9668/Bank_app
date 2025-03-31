@@ -20,10 +20,13 @@ import { Loader2 } from 'lucide-react'
 import { authformSchema } from '@/lib/utitls'
 import SignUp from '@/app/(auth)/sign-up/page'
 import { SignUpFunc,SignInFunc } from '@/lib/actions/user.actions'
+import { useRouter } from 'next/navigation'
+import PlaidLink from './PlaidLink'
 // this is the type of our schema we have
 const AuthForm = ({type}:AuthFormProps) => {
     const [user,setUser]=useState(null)
     const [loading,setloding]=useState(false);
+    const router=useRouter()
     // 1. Define your form.
     const formSchema=authformSchema(type)
      const form = useForm<z.infer<typeof formSchema>>({
@@ -36,17 +39,32 @@ const AuthForm = ({type}:AuthFormProps) => {
     const onSubmit=async(data: z.infer<typeof formSchema>)=> {
         try{
         // sgin up on the appwrite account and generate a plaid token
+          setloding(true)
+          console.log(data)
           if(type=="sign-up"){
-               const newUser = await SignUpFunc(data);
+            const userData={
+                 firstName:data.firstName!,
+                 lastName:data.lastName!,
+                 Address:data.Address!,
+                 State:data.State!,
+                 postalCode:data.postalCode!,
+                 dateOfBirth:data.dateOfBirth!,
+                 SSN:data.SSN!,
+                 email:data.email,
+                 password:data.password
+            }
+               const newUser = await SignUpFunc(userData);
+               console.log(newUser)
                setUser(newUser)
             }
-            if(type==='sign-in'){
-                const response=await SignInFunc({
+          if(type==='sign-in'){
+                const response= await SignInFunc({
                     email:data.email,
                     password:data.password
                 })
-            }
-
+                setUser(response)
+                if(response) router.push('/') 
+          }
           }
         catch(error){
             console.log(error);
@@ -54,7 +72,6 @@ const AuthForm = ({type}:AuthFormProps) => {
             setloding(false)
         }
         setloding(true);
-        console.log(data)
         setloding(false);
     }
   return (
@@ -83,12 +100,11 @@ const AuthForm = ({type}:AuthFormProps) => {
                 </h1>
             </div>
     </header>
-    {
-    user ? (
-            <div className='flex flex-col gap-4'>
-                {/* plaid link account */}
-            </div>
-    ):
+    {   user ? 
+        <div className='flex flex-col gap-4'>
+            <PlaidLink user={user} variant='primary'></PlaidLink>
+        </div>
+    :
     <>
             <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
@@ -180,7 +196,7 @@ const AuthForm = ({type}:AuthFormProps) => {
                         />
                       <FormField
                         control={form.control}
-             name="PostalCode"
+             name="postalCode"
              render={({ field }) => (
              <div className='flex flex-col gap-1.5'>
                 <FormLabel className='text-14 w-full max-w-[280px] font-medium text-gray-700'>
@@ -202,7 +218,7 @@ const AuthForm = ({type}:AuthFormProps) => {
                        <div className='flex gap-4'>
                        <FormField
                         control={form.control}
-             name="DateOfBirth"
+             name="dateOfBirth"
              render={({ field }) => (
              <div className='flex flex-col gap-1.5'>
                 <FormLabel className='text-14 w-full max-w-[280px] font-medium text-gray-700'>
@@ -312,7 +328,7 @@ const AuthForm = ({type}:AuthFormProps) => {
                 </Link>
             </footer>
     </>
-    }
+     }
    </section>
   )
 }

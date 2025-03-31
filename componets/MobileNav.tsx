@@ -3,6 +3,8 @@ import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { sidebarLinks } from '@/constants'
+import Footer from '@/components/ui/Footer'
+import PlaidLink from './PlaidLink'
 import {
     Sheet,
     SheetClose,
@@ -51,13 +53,10 @@ const MobileNav = ({user}:MobileNavProps) => {
                 )
             })}
             </div>
-
-             </nav> 
-             <div>
-                user
-             </div>
-             <div>
-                footer
+            <PlaidLink user={user}></PlaidLink>   
+             </nav>  
+             <div className='w-full mt-20 relative flex items-center justify-center bg-gray-50 shadow-md py-4 px-6'>
+                <Footer user={user} type='mobile'></Footer>
              </div>
            </SheetContent>
         </Sheet>
