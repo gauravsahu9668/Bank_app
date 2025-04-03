@@ -182,9 +182,9 @@ export function decryptId(id: string) {
 export const getTransactionStatus = (date: Date) => {
   const today = new Date();
   const twoDaysAgo = new Date(today);
-  twoDaysAgo.setDate(today.getDate() - 2);
+  twoDaysAgo.setDate(today.getDate() - 1);
 
-  return date > twoDaysAgo ? "Processing" : "Success";
+  return date > twoDaysAgo ? "Success" : "Processing";
 };
 
 export default function formatAmount(amount: number): string {

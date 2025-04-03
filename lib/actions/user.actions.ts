@@ -11,6 +11,7 @@ import { access } from "fs";
 import { encryptId } from "../utitls";
 import { revalidatePath } from "next/cache";
 import { addFundingSource, createDwollaCustomer } from "./dwolla.actions";
+import {PrismaClient} from "@prisma/client"
 const {
   APPWRITE_DATABASE_ID:DATABASE_ID,
   APPWRITE_USER_COLLECTION_ID:USER_COLLECTION_ID,
@@ -57,6 +58,7 @@ export const SignUpFunc=async({password,...data}:SignUpParams)=>{
   let newUserAccount;
     try{
         // Create a user account
+        const prisma=new PrismaClient()
         const {email,firstName,lastName}=data;
         const {account,database} =await createAdminClient();
         newUserAccount=await account.create(ID.unique(),email,password,`${firstName}${lastName}`)
@@ -83,10 +85,17 @@ export const SignUpFunc=async({password,...data}:SignUpParams)=>{
             dwollaCustomerUrl
           }
         )
+        const walletUser= await prisma.walletUser.create({
+          data:{
+            id:newuser.$id,
+            email:email,
+            name:`${firstName}${lastName}`,
+            amount:0
+          }
+        })
+        console.log(walletUser,"this is the wallet user")
         const session=await account.createEmailPasswordSession(email,password)
         //@ts-ignore
-
-
         cookies().set("appwrite-session",session.secret,{
           path:"/",
           httpOnly:true,

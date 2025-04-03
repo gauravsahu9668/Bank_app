@@ -23,6 +23,20 @@ export const sidebarLinks = [
     label: "Transfer Funds",
     id:4
   },
+  {
+    imgURL: "/icons/money-send.svg",
+    route: "/horizon-wallet",
+    label: "Wallet",
+    id:5
+  },
+  {
+    imgURL: "/icons/money-send.svg",
+    route: "/p2p",
+    label: "P2P",
+    id:6
+  },
+  
+
 ];
 
 // good_user / good_password - Bank of America

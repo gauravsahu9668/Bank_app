@@ -122,11 +122,9 @@ const PaymentTransferForm = ({ accounts }: PaymentTransferFormProps) => {
     </div>
   </div>
             </div>
-
             </FormItem>
           )}
         />
-
         <FormField
           control={form.control}
           name="name"

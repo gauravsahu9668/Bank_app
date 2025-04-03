@@ -1,0 +1,42 @@
+
+
+generator client {
+  provider = "prisma-client-js"
+}
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL") 
+}
+model WalletUser {
+  id                String    @unique
+  email             String?   @unique
+  name              String?
+  OnRampTransaction OnRampTransaction[]
+  amount Int 
+}
+model OnRampTransaction {
+  id        Int          @id @default(autoincrement())
+  status    OnRampStatus
+  token     String       @unique
+  provider  String
+  amount    Int
+  startTime DateTime
+  userId    String 
+  type      String  @default("credit")
+  user      WalletUser   @relation(fields: [userId], references: [id])
+}
+model PeerToPeerTransactions {
+  id          Int  @id @default(autoincrement())
+  status      String @default("Success")
+  amount      Int
+  date        DateTime
+  senderId    String 
+  receiverId  String
+  Note        String
+  recieverEmail String
+}
+enum OnRampStatus {
+  Success
+  Failure
+  Processing
+}

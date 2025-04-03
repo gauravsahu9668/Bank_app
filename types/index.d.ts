@@ -322,3 +322,9 @@ declare interface getBankProps {
 declare interface getBankByAccountIdProps {
   accountId: string;
 }
+declare interface InputBoxProps {
+ currentBalance: number,
+ inputTitle:string,
+ type:string
+ buttonTitle:string
+}
