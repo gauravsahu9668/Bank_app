@@ -8,8 +8,9 @@ import { usePathname } from 'next/navigation'
 import { SheetClose } from '@/components/ui/sheet'
 import Footer from '@/components/ui/Footer'
 import PlaidLink from './PlaidLink'
+import ConnectPopUp from './ConnectPopUp'
 const SideBar=({user}:SiderbarProps)=> {
-    const pathname=usePathname()
+  const pathname=usePathname()
   return (
 //   <section className=' hideBar w-[16%] h-screen p-3'>
 //         <nav className='w-full flex flex-col p-3'>
@@ -41,8 +42,8 @@ const SideBar=({user}:SiderbarProps)=> {
 //         </nav> 
 //         <Footer user={user}></Footer>
 //   </section>
-<section className='hideBar w-64 max-h-screen bg-white border-r border-gray-200 p-6 flex flex-col'>
-  <nav className='flex-1 flex flex-col'>
+  <section className='hideBar w-64 max-h-screen bg-white border-r border-gray-200 p-6 flex flex-col'>
+     <nav className='flex-1 flex flex-col'>
     {/* Logo Section */}
     <Link 
       href="/"
@@ -86,13 +87,11 @@ const SideBar=({user}:SiderbarProps)=> {
           </div>
         </Link>
       ))}
-      <div className='mb-4'>
-      <PlaidLink user={user} />
-      </div>
+      <ConnectPopUp user={user}></ConnectPopUp>
     </nav>
-  </nav>
-  <Footer user={user} />
-</section>
+     </nav>
+  <Footer user={user}  />
+  </section>
   )
 }
 export default SideBar

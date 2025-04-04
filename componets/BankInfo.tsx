@@ -27,7 +27,7 @@ const BankInfo = ({ account, appwriteItemId, type }: BankInfoProps) => {
   return (
     <div
       onClick={handleBankChange}
-      className={cn(`flex p-4 transition-all border bg-blue-200 border-transparent ${colors.bg}`, {
+      className={cn(`flex flex-row p-4 transition-all border bg-blue-200 border-transparent ${colors.bg}`, {
         "shadow-sm border-blue-700": type === "card" && isActive,
         "rounded-xl": type === "card",
         "hover:shadow-sm cursor-pointer": type === "card",

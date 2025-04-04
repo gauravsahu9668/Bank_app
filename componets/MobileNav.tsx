@@ -15,13 +15,14 @@ import {
     SheetTrigger,
   } from "@/components/ui/sheet"
 import { usePathname } from 'next/navigation'
+import ConnectPopUp from './ConnectPopUp'
 const MobileNav = ({user}:MobileNavProps) => {
     const pathname=usePathname()
   return (
-    <section className='w-full max-w-[264px]'>
+    <section className='w-full relative max-w-[264px]'>
         <Sheet>
            <SheetTrigger>
-    <Image src='/icons/hamburger.svg'
+           <Image src='/icons/hamburger.svg'
     width={30} height={30} alt='menu'></Image>
            </SheetTrigger>
            <SheetContent side="left">
@@ -52,10 +53,10 @@ const MobileNav = ({user}:MobileNavProps) => {
                     
                 )
             })}
+            <ConnectPopUp user={user}></ConnectPopUp>
             </div>
-            <PlaidLink user={user}></PlaidLink>   
              </nav>  
-             <div className='w-full mt-20 relative flex items-center justify-center bg-gray-50 shadow-md py-4 px-6'>
+             <div className='w-full mt-20 absolute bottom-0 flex items-center justify-center bg-gray-50 shadow-md py-4 px-6'>
                 <Footer user={user} type='mobile'></Footer>
              </div>
            </SheetContent>

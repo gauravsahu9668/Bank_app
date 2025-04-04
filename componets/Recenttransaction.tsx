@@ -18,7 +18,7 @@ const Recenttransaction = ({accounts,transactions,appwriteItemId,page}:RecentTra
             </Link>
         </header>
         <Tabs defaultValue={appwriteItemId} className="w-full">
-          <TabsList className='custom-scrollbar mb-8 flex w-full flex-nowrap'>
+          <TabsList className='custom-scrollbar mb-8 flex w-full flex-nowrap bg-[#cac7c7]'>
                 {
                     accounts.map((account)=>{
                         return (

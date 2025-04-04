@@ -9,16 +9,15 @@ const Footer = ({user,type="desktop"}:FooterProps)=>{
     }
   return (
     <footer className="flex flex-col w-full max-w-5xl cursor-pointer items-center  gap-4 rounded-lg bg-white shadow-lg p-4 md:px-6 md:py-4 max-xl:flex-col max-xl:gap-3">
-        <div className={`${
-                type === 'mobile'
-                    ? 'flex size-12 items-center justify-center rounded-full bg-gray-300 hover:bg-gray-400 transition-all duration-300'
-                    : 'flex size-12 items-center justify-center rounded-full bg-gray-300 max-xl:hidden hover:bg-gray-400 transition-all duration-300'
-            }`}
+        {
+            type!=='mobile' &&
+            <div className={`flex size-12 items-center justify-center rounded-full bg-gray-300 hover:bg-gray-400 transition-all duration-300`}
         >
             <p className="text-xl font-bold text-gray-700">
                 {user?.firstName[0]?.toUpperCase()}
             </p>
         </div>
+        }
         <div
             className={`${
                 type === 'mobile'

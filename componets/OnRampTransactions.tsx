@@ -45,7 +45,7 @@ const OnRampTransactions = () => {
                         return(
                            <TableRow className={`${data.type==='credit' ? "bg-[#d8f5c9]":'bg-[#fad2d2]'}`} key={data.key}>
                              <TableCell className="font-medium text-center">{data.type==='credit'? "Withdraw":"Deposite"}</TableCell>
-                            <TableCell className='text-center'>{status}</TableCell>
+                            <TableCell className='text-center'>Success</TableCell>
                             <TableCell className='text-center'> {formatDateTime(new Date(data.startTime)).dateTime}</TableCell>
                             <TableCell className={data.type==='credit'?"text-[#2dd749] text-center font-semibold text-[18px]":"text-[#fa1d1d] text-[18px] text-center font-semibold"}>{data.type==='credit'? `+${formatAmount(data.amount)}`:`-${formatAmount(data.amount)}`}</TableCell>
                             <TableCell className="text-center">{data.provider}</TableCell>
