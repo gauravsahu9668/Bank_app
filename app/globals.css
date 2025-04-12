@@ -18,7 +18,20 @@
         display: none;
     }
 }
-
+.changeBox{
+    @media (width<=40rem) {
+       display: flex;
+       flex-direction: column-reverse;
+    }
+}
+.changeWallet{
+    @media (width<=40rem) {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+    }
+}
 @layer utilities {
     .no-scrollbar::-webkit-scrollbar {
       display: none;

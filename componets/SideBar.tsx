@@ -42,7 +42,8 @@ const SideBar=({user}:SiderbarProps)=> {
 //         </nav> 
 //         <Footer user={user}></Footer>
 //   </section>
-  <section className='hideBar w-64 max-h-screen bg-white border-r border-gray-200 p-6 flex flex-col'>
+  <section className='hideBar background-color: #D9AFD9 background-image:linear-gradient(0deg, #D9AFD9 0%, #97D9E1 100%)
+ w-64 max-h-screen bg-white border-r border-gray-200 p-6 flex flex-col'>
      <nav className='flex-1 flex flex-col'>
     {/* Logo Section */}
     <Link 
